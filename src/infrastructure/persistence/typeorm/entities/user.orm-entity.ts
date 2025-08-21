@@ -6,11 +6,20 @@ export class UserOrmEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ unique: true })
   username: string;
 
-  @Column()
+  @Column({ unique: true })
   email: string;
+
+  @Column()
+  passwordHash: string;
+
+  @Column()
+  city: string;
+
+  @Column({ type: 'date' })
+  dateOfBirth: Date;
 
   @CreateDateColumn()
   createdAt: Date;

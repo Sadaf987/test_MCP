@@ -6,6 +6,9 @@ export class User {
     public readonly id: number,
     public readonly username: Username,
     public readonly email: string,
+    public readonly passwordHash: string,
+    public readonly city: string,
+    public readonly dateOfBirth: Date,
     public readonly createdAt: Date,
     public readonly updatedAt: Date
   ) {}

@@ -14,35 +14,66 @@ export class UserTypeOrmRepository implements IUserRepository {
     private readonly userRepository: Repository<UserOrmEntity>
   ) {}
 
-  async save(user: User): Promise<void> {
+  async save(user: User): Promise<User> {
     const userEntity = new UserOrmEntity();
     if (user.id) {
       userEntity.id = user.id;
     }
     userEntity.username = user.username.value;
     userEntity.email = user.email;
+    userEntity.passwordHash = user.passwordHash;
+    userEntity.city = user.city;
+    userEntity.dateOfBirth = user.dateOfBirth;
     userEntity.createdAt = user.createdAt;
     userEntity.updatedAt = user.updatedAt;
 
-    await this.userRepository.save(userEntity);
+    const savedEntity = await this.userRepository.save(userEntity);
+    
+    return new User(
+      savedEntity.id,
+      new Username(savedEntity.username),
+      savedEntity.email,
+      savedEntity.passwordHash,
+      savedEntity.city,
+      savedEntity.dateOfBirth,
+      savedEntity.createdAt,
+      savedEntity.updatedAt
+    );
+  }
+
+  private mapToDomain(entity: UserOrmEntity): User {
+    return new User(
+      entity.id, 
+      new Username(entity.username), 
+      entity.email, 
+      entity.passwordHash,
+      entity.city,
+      entity.dateOfBirth,
+      entity.createdAt, 
+      entity.updatedAt
+    );
   }
 
   async findById(id: number): Promise<User | null> {
     const userEntity = await this.userRepository.findOne({ where: { id } });
     if (!userEntity) return null;
-    return new User(userEntity.id, new Username(userEntity.username), userEntity.email, userEntity.createdAt, userEntity.updatedAt);
+    return this.mapToDomain(userEntity);
   }
 
   async findByUsername(username: string): Promise<User | null> {
     const userEntity = await this.userRepository.findOne({ where: { username } });
     if (!userEntity) return null;
-    return new User(userEntity.id, new Username(userEntity.username), userEntity.email, userEntity.createdAt, userEntity.updatedAt);
+    return this.mapToDomain(userEntity);
+  }
+
+  async findByEmail(email: string): Promise<User | null> {
+    const userEntity = await this.userRepository.findOne({ where: { email } });
+    if (!userEntity) return null;
+    return this.mapToDomain(userEntity);
   }
 
   async findAll(): Promise<User[]> {
     const userEntities = await this.userRepository.find();
-    return userEntities.map((entity) =>
-      new User(entity.id, new Username(entity.username), entity.email, entity.createdAt, entity.updatedAt)
-    );
+    return userEntities.map(entity => this.mapToDomain(entity));
   }
 }

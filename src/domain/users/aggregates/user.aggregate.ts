@@ -17,6 +17,9 @@ export class UserAggregate {
       this._user.id,  // Keep the same user ID
       newUsernameVO,  // Update the username
       this._user.email,  // Keep the same email
+      this._user.passwordHash,
+      this._user.city,
+      this._user.dateOfBirth,
       this._user.createdAt,  // Keep the same creation date
       this._user.updatedAt  // Keep the same update date
     );

@@ -1,5 +1,6 @@
 import { DataSource } from 'typeorm';
 import { UserOrmEntity } from './src/infrastructure/persistence/typeorm/entities/user.orm-entity';
+import { AccountOrmEntity } from './src/infrastructure/persistence/typeorm/entities/account.orm-entity';
 
 export default new DataSource({
   type: 'postgres',
@@ -8,7 +9,7 @@ export default new DataSource({
   username: process.env.DB_USERNAME || 'postgres',
   password: process.env.DB_PASSWORD || 'postgres',
   database: process.env.DB_NAME || 'banking-app',
-  entities: [UserOrmEntity],
+  entities: [UserOrmEntity, AccountOrmEntity],
   migrations: ['src/migrations/*.ts'],
   synchronize: false,
   logging: process.env.NODE_ENV === 'development',
