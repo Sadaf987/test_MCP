@@ -41,6 +41,31 @@ export class UserTypeOrmRepository implements IUserRepository {
     );
   }
 
+  async update(user: User): Promise<User> {
+    const userEntity = new UserOrmEntity();
+    userEntity.id = user.id;
+    userEntity.username = user.username.value;
+    userEntity.email = user.email;
+    userEntity.passwordHash = user.passwordHash;
+    userEntity.city = user.city;
+    userEntity.dateOfBirth = user.dateOfBirth;
+    userEntity.createdAt = user.createdAt;
+    userEntity.updatedAt = user.updatedAt;
+
+    const updatedEntity = await this.userRepository.save(userEntity);
+    
+    return new User(
+      updatedEntity.id,
+      new Username(updatedEntity.username),
+      updatedEntity.email,
+      updatedEntity.passwordHash,
+      updatedEntity.city,
+      updatedEntity.dateOfBirth,
+      updatedEntity.createdAt,
+      updatedEntity.updatedAt
+    );
+  }
+
   private mapToDomain(entity: UserOrmEntity): User {
     return new User(
       entity.id, 

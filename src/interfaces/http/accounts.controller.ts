@@ -1,6 +1,8 @@
 // src/interfaces/http/accounts.controller.ts
-import { Controller, Post, Body, Get, Put, Param, HttpException, HttpStatus } from '@nestjs/common';
+import { Controller, Post, Body, Get, Put, Param, HttpException, HttpStatus, Headers, UnauthorizedException } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
+import { QueryBus as QueryBusImport } from '@nestjs/cqrs';
+import { ValidateTokenQuery } from 'src/application/auth/queries/validate-token.query';
 import { CreateAccountCommand } from 'src/application/accounts/commands/create-account.command';
 import { UpdateAccountStatusCommand } from 'src/application/accounts/commands/update-account-status.command';
 import { GetAccountQuery } from 'src/application/accounts/queries/get-account.query';
@@ -14,17 +16,40 @@ import { createAccountJoi, updateAccountStatusJoi, validateRequest } from 'src/l
 export class AccountsController {
   constructor(
     private readonly commandBus: CommandBus,
-    private readonly queryBus: QueryBus
+    private readonly queryBus: QueryBus,
+    private readonly authQueryBus: QueryBusImport
   ) {}
 
   @Post()
-  async create(@Body() createAccountDTO: CreateAccountDTO) {
+  async create(@Body() createAccountDTO: CreateAccountDTO, @Headers('authorization') authHeader: string) {
     try {
+      // Validate JWT token
+      if (!authHeader || !authHeader.startsWith('Bearer ')) {
+        throw new UnauthorizedException('Authentication required');
+      }
+      const token = authHeader.substring(7);
+      const user = await this.authQueryBus.execute(new ValidateTokenQuery(token));
+      
       // Validate the request body
       const validatedData = validateRequest(createAccountJoi, createAccountDTO);
       const { user_id, type, initial_balance = 0 } = validatedData;
+      
+      // Ensure user can only create accounts for themselves
+      if (user_id !== user.userId) {
+        throw new UnauthorizedException('You can only create accounts for yourself');
+      }
+      
       return await this.commandBus.execute(new CreateAccountCommand(user_id, type, initial_balance));
     } catch (error) {
+      if (error.message === 'Authentication required') {
+        throw new UnauthorizedException('Authentication required');
+      } else if (error.message === 'Token expired') {
+        throw new UnauthorizedException('Token expired');
+      } else if (error.message === 'Invalid token') {
+        throw new UnauthorizedException('Invalid token');
+      } else if (error.message === 'Token not active yet') {
+        throw new UnauthorizedException('Token not active yet');
+      }
       if (error.message === 'User not found') {
         throw new HttpException({
           message: error.message,
@@ -90,8 +115,15 @@ export class AccountsController {
   }
 
   @Put(':id/status')
-  async updateStatus(@Param('id') id: string, @Body() updateStatusDTO: UpdateAccountStatusDTO) {
+  async updateStatus(@Param('id') id: string, @Body() updateStatusDTO: UpdateAccountStatusDTO, @Headers('authorization') authHeader: string) {
     try {
+      // Validate JWT token
+      if (!authHeader || !authHeader.startsWith('Bearer ')) {
+        throw new UnauthorizedException('Authentication required');
+      }
+      const token = authHeader.substring(7);
+      const user = await this.authQueryBus.execute(new ValidateTokenQuery(token));
+      
       const accountId = parseInt(id);
       if (isNaN(accountId)) {
         throw new HttpException({
@@ -102,8 +134,19 @@ export class AccountsController {
       }
 
       const validatedData = validateRequest(updateAccountStatusJoi, updateStatusDTO);
-      return await this.commandBus.execute(new UpdateAccountStatusCommand(accountId, validatedData.status));
+      
+      // Pass user ID to the command for authorization
+      return await this.commandBus.execute(new UpdateAccountStatusCommand(accountId, validatedData.status, user.userId));
     } catch (error) {
+      if (error.message === 'Authentication required') {
+        throw new UnauthorizedException('Authentication required');
+      } else if (error.message === 'Token expired') {
+        throw new UnauthorizedException('Token expired');
+      } else if (error.message === 'Invalid token') {
+        throw new UnauthorizedException('Invalid token');
+      } else if (error.message === 'Token not active yet') {
+        throw new UnauthorizedException('Token not active yet');
+      }
       if (error.message === 'Account not found') {
         throw new HttpException({
           message: error.message,

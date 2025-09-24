@@ -1,11 +1,12 @@
 import * as Joi from "joi";
+import { BadRequestException } from "@nestjs/common";
 
 export const createUserJoi: Joi.ObjectSchema = Joi.object({
 	username: Joi.string().min(3).max(50).pattern(/^[a-zA-Z0-9_]+$/).required(),
 	email: Joi.string().email().required(),
 	password: Joi.string().min(8).required(),
 	city: Joi.string().min(2).max(50).required(),
-	date_of_birth: Joi.date().max('now').required(),
+	date_of_birth: Joi.date().max("now").required(),
 });
 
 export const loginJoi: Joi.ObjectSchema = Joi.object({
@@ -15,19 +16,19 @@ export const loginJoi: Joi.ObjectSchema = Joi.object({
 
 export const createAccountJoi: Joi.ObjectSchema = Joi.object({
 	user_id: Joi.number().integer().positive().required(),
-	type: Joi.string().valid('savings', 'checking').required(),
+	type: Joi.string().valid("savings", "checking").required(),
 	initial_balance: Joi.number().positive().default(0),
 });
 
 export const updateAccountStatusJoi: Joi.ObjectSchema = Joi.object({
-	status: Joi.string().valid('active', 'frozen', 'closed').required(),
+	status: Joi.string().valid("active", "frozen", "closed").required(),
 });
 
 export const createTransactionJoi: Joi.ObjectSchema = Joi.object({
 	from_account_id: Joi.number().integer().positive().optional(),
 	to_account_id: Joi.number().integer().positive().optional(),
 	amount: Joi.number().positive().required(),
-	type: Joi.string().valid('deposit', 'withdrawal', 'transfer').required(),
+	type: Joi.string().valid("deposit", "withdrawal", "transfer").required(),
 	description: Joi.string().min(1).max(500).required(),
 });
 
@@ -49,17 +50,23 @@ export const validateRequest = (schema: Joi.ObjectSchema, data: any) => {
 
 	if (error) {
 		const errors = error.details.map(detail => ({
-			field: detail.path.join('.'),
+			field: detail.path.join("."),
 			message: detail.message,
 			value: detail.context?.value
 		}));
 
-		throw {
+		const errorMessage = errors.map(err => `${err.field}: ${err.message}`).join(", ");
+		
+		throw new BadRequestException({
 			statusCode: 400,
-			message: 'Validation failed',
-			errors
-		};
+			message: `Validation failed: ${errorMessage}`,
+			errors: errors
+		});
 	}
 
 	return value;
-}; 
+};
+export const changePasswordJoi: Joi.ObjectSchema = Joi.object({
+	currentPassword: Joi.string().required(),
+	newPassword: Joi.string().min(8).required(),
+});

@@ -5,6 +5,7 @@ export class CreateTransactionCommand {
         public readonly toAccountId: number | null,
         public readonly amount: number,
         public readonly type: string,
-        public readonly description: string
+        public readonly description: string,
+        public readonly userId?: number
     ) {}
 } 
