@@ -1,0 +1,59 @@
+
+> banking-app@0.0.1 start:dev
+> nest start --watch
+
+[2J[3J[H[[90m12:25:01 PM[0m] Starting compilation in watch mode...
+
+[[90m12:25:04 PM[0m] Found 0 errors. Watching for file changes.
+
+[32m[Nest] 118637  - [39m09/10/2025, 12:25:06 PM [32m    LOG[39m [38;5;3m[NestFactory] [39m[32mStarting Nest application...[39m
+[32m[Nest] 118637  - [39m09/10/2025, 12:25:06 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m[38;5;3m +86ms[39m
+[32m[Nest] 118637  - [39m09/10/2025, 12:25:06 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mConfigHostModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 118637  - [39m09/10/2025, 12:25:06 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mInterestModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 118637  - [39m09/10/2025, 12:25:06 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mConfigModule dependencies initialized[39m[38;5;3m +1ms[39m
+[32m[Nest] 118637  - [39m09/10/2025, 12:25:06 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mCqrsModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 118637  - [39m09/10/2025, 12:25:06 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mJwtModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 118637  - [39m09/10/2025, 12:25:06 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmCoreModule dependencies initialized[39m[38;5;3m +19ms[39m
+[32m[Nest] 118637  - [39m09/10/2025, 12:25:06 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 118637  - [39m09/10/2025, 12:25:06 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m[38;5;3m +1ms[39m
+[32m[Nest] 118637  - [39m09/10/2025, 12:25:06 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 118637  - [39m09/10/2025, 12:25:06 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mAppModule dependencies initialized[39m[38;5;3m +1ms[39m
+[32m[Nest] 118637  - [39m09/10/2025, 12:25:06 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mLoansModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 118637  - [39m09/10/2025, 12:25:06 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mAuthModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 118637  - [39m09/10/2025, 12:25:06 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mUsersController {/users}:[39m[38;5;3m +4ms[39m
+[32m[Nest] 118637  - [39m09/10/2025, 12:25:06 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/users, POST} route[39m[38;5;3m +3ms[39m
+[32m[Nest] 118637  - [39m09/10/2025, 12:25:06 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/users/login, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 118637  - [39m09/10/2025, 12:25:06 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/users, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 118637  - [39m09/10/2025, 12:25:06 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mAccountsController {/accounts}:[39m[38;5;3m +1ms[39m
+[32m[Nest] 118637  - [39m09/10/2025, 12:25:06 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/accounts, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 118637  - [39m09/10/2025, 12:25:06 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/accounts, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 118637  - [39m09/10/2025, 12:25:06 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/accounts/:id, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 118637  - [39m09/10/2025, 12:25:06 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/accounts/user/:userId, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 118637  - [39m09/10/2025, 12:25:06 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/accounts/:id/status, PUT} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 118637  - [39m09/10/2025, 12:25:06 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mTransactionsController {/transactions}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 118637  - [39m09/10/2025, 12:25:06 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/transactions, POST} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 118637  - [39m09/10/2025, 12:25:06 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/transactions, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 118637  - [39m09/10/2025, 12:25:06 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/transactions/:id, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 118637  - [39m09/10/2025, 12:25:06 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/transactions/account/:accountId, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 118637  - [39m09/10/2025, 12:25:06 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mProtectedController {/protected}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 118637  - [39m09/10/2025, 12:25:06 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/protected/profile, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 118637  - [39m09/10/2025, 12:25:06 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/protected/manual-auth, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 118637  - [39m09/10/2025, 12:25:06 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/protected/secure-action, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 118637  - [39m09/10/2025, 12:25:06 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mBankingController {/banking}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 118637  - [39m09/10/2025, 12:25:06 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/banking/deposit, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 118637  - [39m09/10/2025, 12:25:06 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/banking/withdraw, POST} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 118637  - [39m09/10/2025, 12:25:06 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/banking/transfer, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 118637  - [39m09/10/2025, 12:25:06 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mAuthController {/auth}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 118637  - [39m09/10/2025, 12:25:06 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/auth/refresh, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 118637  - [39m09/10/2025, 12:25:06 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/auth/profile, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 118637  - [39m09/10/2025, 12:25:06 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/auth/change-password, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 118637  - [39m09/10/2025, 12:25:06 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mLoansController {/loans}:[39m[38;5;3m +1ms[39m
+[32m[Nest] 118637  - [39m09/10/2025, 12:25:06 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/loans, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 118637  - [39m09/10/2025, 12:25:06 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/loans, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 118637  - [39m09/10/2025, 12:25:06 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/loans/:id, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 118637  - [39m09/10/2025, 12:25:06 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/loans/:id/status, PUT} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 118637  - [39m09/10/2025, 12:25:06 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mInterestController {/interest}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 118637  - [39m09/10/2025, 12:25:06 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/interest/calculate, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 118637  - [39m09/10/2025, 12:25:06 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/interest/calculate-loan, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 118637  - [39m09/10/2025, 12:25:06 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/interest/calculate-account, POST} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 118637  - [39m09/10/2025, 12:25:06 PM [32m    LOG[39m [38;5;3m[NestApplication] [39m[32mNest application successfully started[39m[38;5;3m +3ms[39m

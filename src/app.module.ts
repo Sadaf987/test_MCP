@@ -29,6 +29,7 @@ import { GetAllTransactionsHandler } from './application/transactions/handlers/g
 import { AuthModule } from './infrastructure/auth/auth.module';
 import { LoansModule } from './application/loans/loans.module';
 import { InterestModule } from './application/interest/interest.module';
+import { McpModule } from './mcp/mcp.module';
 
 @Module({
   imports: [
@@ -36,6 +37,7 @@ import { InterestModule } from './application/interest/interest.module';
     AuthModule,
     LoansModule,
     InterestModule,
+    McpModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'localhost',
